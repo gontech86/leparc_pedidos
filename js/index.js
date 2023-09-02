@@ -1,4 +1,27 @@
-function leerCSV() {
+const rutaListaLocal = "./data/lista.csv";
+
+function loadCSVFromFile() {
+    fetch(rutaListaLocal)
+        .then(response => {
+            if (response.status === 200) {
+                return response.text();
+            } else {
+                throw new Error("El archivo no existe en la ruta" + rutaListaLocal);
+            }
+        })
+        .then(contenidoCSV => {
+            const lista = contenidoCSV.split('\n');
+            crearTabla(lista);        
+        })
+        .catch(error => console.error('Error al obtener archivo: ', error));
+          
+}
+
+//Carga automaticamente si detecta la tabla de referencia
+loadCSVFromFile();
+
+
+function leerCSVInput() {
     // Obtener el archivo CSV seleccionado
     const archivo = document.querySelector("input[name='archivo']")
         .files[0];
@@ -39,4 +62,4 @@ function crearTabla(datos) {
 }
 
 // Agrega el evento change al elemento input
-document.querySelector("input[name='archivo']").addEventListener("change", leerCSV);
+document.querySelector("input[name='archivo']").addEventListener("change", leerCSVInput);
