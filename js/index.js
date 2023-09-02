@@ -1,4 +1,4 @@
-const rutaListaLocal = "./data/lista.csv";
+const rutaListaLocal = "./data/lista1.csv";
 
 function loadCSVFromFile() {
     fetch(rutaListaLocal)
@@ -6,15 +6,16 @@ function loadCSVFromFile() {
             if (response.status === 200) {
                 return response.text();
             } else {
+                const divErrorArchivo = document.querySelector(".archivo-error");
+                divErrorArchivo.classList.remove("ocultar");
                 throw new Error("El archivo no existe en la ruta" + rutaListaLocal);
             }
         })
         .then(contenidoCSV => {
             const lista = contenidoCSV.split('\n');
-            crearTabla(lista);        
+            crearTabla(lista);
         })
         .catch(error => console.error('Error al obtener archivo: ', error));
-          
 }
 
 //Carga automaticamente si detecta la tabla de referencia
@@ -31,6 +32,9 @@ function leerCSVInput() {
     reader.addEventListener("load", (event) => {
         // Convertir el contenido del archivo CSV en un array
         const datos = event.target.result.split("\n");
+        
+        const divErrorArchivo = document.querySelector(".archivo-error");
+        divErrorArchivo.classList.add("ocultar");
         crearTabla(datos);
     });
     reader.readAsText(archivo);

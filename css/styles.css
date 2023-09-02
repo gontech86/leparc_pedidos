@@ -1,8 +1,24 @@
 table {
-    border-collapse: collapse;
-    border: 1px solid black;
-  }
-  
-  table, th, td {
-    border: 1px solid black;
-  }  
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.ocultar {
+  display: none;
+}
+
+.archivo-error {
+  box-shadow: 0px 6px 20px rgba(255, 0, 0, 0.147);
+  border: 1px solid darkred;
+  border-radius: 6px;
+  padding: 3px;
+  color: red;
+  font-size: 20px;  
+  text-align: center;
+}
