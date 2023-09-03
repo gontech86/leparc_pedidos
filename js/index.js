@@ -96,6 +96,7 @@ function crearFilasConDatos(filaDatos, tabla) {
         
     }
 }
+
 function retornarFila(fila) {    
     let filaHtml = `    
     <td>
@@ -112,18 +113,6 @@ function retornarFila(fila) {
     </td>    
     `
     return filaHtml;
-}
-
-function calcularMultiplicacion() {
-    if(document.getElementById('numeroEntero').value != 0){
-    const numeroEntero = parseInt(document.getElementById('numeroEntero').value);
-    const numeroDecimalEstatico = 1000;
-    const resultado = numeroEntero * numeroDecimalEstatico;
-    document.getElementById('resultado').textContent = resultado;
-    }
-    else{
-        document.getElementById('resultado').textContent = "0";
-    }
 }
 
 function activarSubtotal(filaElemento) {
