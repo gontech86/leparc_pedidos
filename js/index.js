@@ -1,4 +1,5 @@
 const rutaListaLocal = "./data/lista.csv";
+let tabla;
 
 function loadCSVFromFile() {
     fetch(rutaListaLocal)
@@ -42,11 +43,11 @@ function loadCSVFromInput() {
 
 function crearTabla(datos) {
     // Crear la tabla
-    const tabla = document.getElementById("tabla");
+    tabla = document.getElementById("tabla");
     tabla.innerHTML = "";
 
     crearEncabezados(datos[0].split(","), tabla);
-    crearFilasConDatos(datos.slice(1), tabla);
+    crearFilasConDatos(datos.slice(1), tabla);// comienza luego de los encabezados
 }
 
 function crearEncabezados(filaEncabezados, tabla) {
@@ -81,34 +82,72 @@ function crearFilasConDatos(filaDatos, tabla) {
         // Obtener la fila actual del archivo CSV
         const fila = filaDatos[i].split(",");
 
-        // Crear una fila en la tabla
         const filaElemento = document.createElement("tr");
+        filaElemento.setAttribute("id",i);
 
-        // Agregar input de numeros enteros primera columna
-        const cantidadInput = document.createElement('input');
-        cantidadInput.type = 'number';
-        cantidadInput.value = 0;
-        cantidadInput.min = 0; // Valor mínimo permitido
-        cantidadInput.pattern = "\\d+"; // Patrón para números enteros
-        const tdCantidad = document.createElement('td');
-        tdCantidad.appendChild(cantidadInput);
-        filaElemento.appendChild(tdCantidad);
-
-        // Agregar las columnas a la fila
-        for (let j = 0; j < fila.length; j++) {
-            const columna = document.createElement("td");
-            columna.textContent = fila[j];
-            filaElemento.appendChild(columna);
-        }
-
-        //Agrego ultima columna a la fila con Subtotal
-        const tdCantidad2 = document.createElement('td');
-        tdCantidad2.textContent = "0";
-        filaElemento.appendChild(tdCantidad2);
+        filaElemento.innerHTML = (`
+                ${retornarFila(fila)}
+        `)
 
         // Agregar la fila a la tabla
-        tabla.appendChild(filaElemento);
+        tabla.append(filaElemento);
+
+        activarSubtotal(filaElemento);        
+        
     }
+}
+function retornarFila(fila) {    
+    let filaHtml = `    
+    <td>
+    <input type="number" value="0" min="0" pattern="\\d+" class="inputEntero">
+    </td>
+    <td class="producto">
+     ${fila[0]}
+    </td>
+    <td class="precio-unitario">
+    ${fila[1]}
+    </td>
+    <td class="subtotal">
+    0
+    </td>    
+    `
+    return filaHtml;
+}
+
+function calcularMultiplicacion() {
+    if(document.getElementById('numeroEntero').value != 0){
+    const numeroEntero = parseInt(document.getElementById('numeroEntero').value);
+    const numeroDecimalEstatico = 1000;
+    const resultado = numeroEntero * numeroDecimalEstatico;
+    document.getElementById('resultado').textContent = resultado;
+    }
+    else{
+        document.getElementById('resultado').textContent = "0";
+    }
+}
+
+function activarSubtotal(filaElemento) {
+    // Obtener el elemento input
+    const input = filaElemento.querySelector(".inputEntero");
+
+    // Obtener el elemento precio-unitario
+    const precioUnitario = filaElemento.querySelector(".precio-unitario");
+
+    // Obtener el elemento subtotal
+    const subtotal = filaElemento.querySelector(".subtotal");
+
+    // Agregar evento de cambio al input
+    input.addEventListener("change", (event) => {
+
+        // Obtener el valor del input
+        const valor = event.target.value;
+
+        // Multiplicar el valor del input por el precio unitario
+        const resultado = valor * precioUnitario.textContent;
+
+        // Establecer el valor del subtotal
+        subtotal.textContent = resultado;
+    });
 }
 
 // Agrega el evento change al elemento input
