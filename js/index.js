@@ -1,5 +1,6 @@
 const rutaListaLocal = "./data/lista.csv";
 let tabla;
+let productos;
 
 function loadCSVFromFile() {
     fetch(rutaListaLocal)
@@ -13,8 +14,9 @@ function loadCSVFromFile() {
             }
         })
         .then(contenidoCSV => {
-            const lista = contenidoCSV.split('\n');
-            crearTabla(lista);
+            productos = contenidoCSV.split('\n');
+            console.log(productos);
+            crearTabla(productos);
         })
         .catch(error => console.error('Error al obtener archivo: ', error));
 }
@@ -32,11 +34,11 @@ function loadCSVFromInput() {
     const reader = new FileReader();
     reader.addEventListener("load", (event) => {
         // Convertir el contenido del archivo CSV en un array
-        const datos = event.target.result.split("\n");
+        productos = event.target.result.split("\n");
 
         const divErrorArchivo = document.querySelector(".archivo-error");
         divErrorArchivo.classList.add("ocultar");
-        crearTabla(datos);
+        crearTabla(productos);
     });
     reader.readAsText(archivo);
 }
