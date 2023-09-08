@@ -1,8 +1,8 @@
-const rutaListaLocal = "./data/lista.csv";
+const rutaListaLocal = "./data/listaPrecios.csv";
 let tabla;
 let productos;
 
-function loadCSVFromFile() {
+function loadCSVFromFile() {    
     fetch(rutaListaLocal)
         .then(response => {
             if (response.status === 200) {
@@ -15,7 +15,6 @@ function loadCSVFromFile() {
         })
         .then(contenidoCSV => {
             productos = contenidoCSV.split('\n');
-            console.log(productos);
             crearTabla(productos);
         })
         .catch(error => console.error('Error al obtener archivo: ', error));
@@ -104,11 +103,14 @@ function retornarFila(fila) {
     <td>
     <input type="number" value="0" min="0" pattern="\\d+" class="inputEntero">
     </td>
-    <td class="producto">
+    <td class="codigo">
      ${fila[0]}
     </td>
+    <td class="producto">
+     ${fila[1]}
+    </td>
     <td class="precio-unitario">
-    ${fila[1]}
+    ${fila[2]}
     </td>
     <td class="subtotal">
     0
@@ -118,25 +120,20 @@ function retornarFila(fila) {
 }
 
 function activarSubtotal(filaElemento) {
-    // Obtener el elemento input
+    /*
+    Obtengo la clase del input, precio unitario y subtotal.
+    Activo el Evento para cuando detecte cambios en input.
+    Realizo la multiplicacion del input x precio unitario y hago una modificacion del subtotal.
+    */
+    
     const input = filaElemento.querySelector(".inputEntero");
-
-    // Obtener el elemento precio-unitario
     const precioUnitario = filaElemento.querySelector(".precio-unitario");
-
-    // Obtener el elemento subtotal
     const subtotal = filaElemento.querySelector(".subtotal");
 
     // Agregar evento de cambio al input
-    input.addEventListener("change", (event) => {
-
-        // Obtener el valor del input
-        const valor = event.target.value;
-
-        // Multiplicar el valor del input por el precio unitario
-        const resultado = valor * precioUnitario.textContent;
-
-        // Establecer el valor del subtotal
+    input.addEventListener("change", (event) => {        
+        const valor = event.target.value;        
+        const resultado = valor * precioUnitario.textContent;        
         subtotal.textContent = resultado;
     });
 }
