@@ -22,3 +22,27 @@ td {
   font-size: 20px;  
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+  }
+
+  td, th {
+    width: 50%;
+  }
+
+  input {
+    width: 50%;
+  }
+}
+
+.centrar-div {
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .inputEntero {
+    width: 50px;
+  }
+}
