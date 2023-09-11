@@ -1,8 +1,8 @@
-const rutaListaLocal = "./data/listaPrecios.csv";
+const rutaListaLocal = "./data/lista.csv";
 let tabla;
 let productos;
 
-function loadCSVFromFile() {    
+function loadCSVFromFile() {
     fetch(rutaListaLocal)
         .then(response => {
             if (response.status === 200) {
@@ -22,7 +22,6 @@ function loadCSVFromFile() {
 
 //Carga automaticamente si detecta la tabla de referencia
 loadCSVFromFile();
-
 
 function loadCSVFromInput() {
     // Obtener el archivo CSV seleccionado
@@ -84,7 +83,8 @@ function crearFilasConDatos(filaDatos, tabla) {
         const fila = filaDatos[i].split(",");
 
         const filaElemento = document.createElement("tr");
-        filaElemento.setAttribute("id",i);
+        filaElemento.setAttribute("id", fila[0]);
+        filaElemento.setAttribute("class", "fila-dato");
 
         filaElemento.innerHTML = (`
                 ${retornarFila(fila)}
@@ -92,13 +92,12 @@ function crearFilasConDatos(filaDatos, tabla) {
 
         // Agregar la fila a la tabla
         tabla.append(filaElemento);
+        activarSubtotal(filaElemento);
 
-        activarSubtotal(filaElemento);        
-        
     }
 }
 
-function retornarFila(fila) {    
+function retornarFila(fila) {
     let filaHtml = `    
     <td>
     <input type="number" value="0" min="0" pattern="\\d+" class="inputEntero">
@@ -125,18 +124,56 @@ function activarSubtotal(filaElemento) {
     Activo el Evento para cuando detecte cambios en input.
     Realizo la multiplicacion del input x precio unitario y hago una modificacion del subtotal.
     */
-    
+
     const input = filaElemento.querySelector(".inputEntero");
     const precioUnitario = filaElemento.querySelector(".precio-unitario");
     const subtotal = filaElemento.querySelector(".subtotal");
 
     // Agregar evento de cambio al input
-    input.addEventListener("change", (event) => {        
-        const valor = event.target.value;        
-        const resultado = valor * precioUnitario.textContent;        
+    input.addEventListener("change", (event) => {
+        const valor = event.target.value;
+        const resultado = valor * precioUnitario.textContent;
         subtotal.textContent = resultado;
+        //obtenerTablaNotaPedido();
+    });
+}
+
+function obtenerTablaNotaPedido() {
+    const filas = tabla.querySelectorAll(".fila-dato");
+    const array = [];
+
+    for (const fila of filas) {
+        const cantidad = parseInt(fila.querySelector(".inputEntero").value);
+
+        if (cantidad > 0) {
+            const codigo = parseInt(fila.querySelector(".codigo").textContent);            
+            const descripcion = fila.querySelector(".producto").innerHTML;
+            const precioUnitario = parseInt(fila.querySelector(".precio-unitario").textContent);            
+            const subtotal = parseInt(fila.querySelector(".subtotal").textContent);            
+            
+            const producto = cantidad + ',' + codigo + ',' + descripcion + ',' + precioUnitario + ',' + subtotal;            
+            array.push(producto);
+        }
+    }    
+
+    if(array.length > 0){
+        localStorage.setItem('NotaPedido', JSON.stringify(array));
+    }
+    else{        
+        console.warn("La lista esta vacia...");
+    }
+}
+
+function activarBotonNotaPedido() {
+    const botonNotaPedido = document.querySelector(".button-NotaPedido");
+    console.log("activarBotonNotaPedido");
+
+    botonNotaPedido.addEventListener("click", (event) => {
+        obtenerTablaNotaPedido();
     });
 }
 
 // Agrega el evento change al elemento input
 document.querySelector("input[name='archivo']").addEventListener("change", loadCSVFromInput);
+
+activarBotonNotaPedido();
