@@ -1,26 +1,67 @@
-
-
-/*
-function almacenarPedido()
-{
-    if(carritoFrutas.length > 0)
-    {
-        //localStorage.setItem('tablaPedido', JSON.stringify(carritoFrutas));
-        localStorage.setItem('tablaPedido', tablaDePedido);
-    }    
-}
+const notaDePedido = recuperarCarrito()
 
 function recuperarCarrito()
 {
     //true retorna el carrito guardado - false retorna un array vacio
-    return JSON.parse(localStorage.getItem('tablaPedido')) || [];
+    return JSON.parse(localStorage.getItem('NotaPedido')) || [];
 }
 
-const tablaDePedido = recuperarCarrito();
-*/
+function cargarNotaDePedido(arrayProductos) {
+    const tableHtmlBody = document.querySelector(".tabla-pedido");    
+    //tableHtmlBody.innerHTML = "";
 
+    if (tableHtmlBody !== undefined) {
+        if (arrayProductos.length > 0) {
+            // Vaciar el cuerpo de la tabla HTML
+            tableHtmlBody.innerHTML = "";
+        }
 
+        arrayProductos.forEach(producto => {
+            let row = document.createElement("tr");
+            row.innerHTML = (`
+                ${retornarFilaHTML(producto.split(","))}
+        `);
+            tableHtmlBody.append(row);
+        }
+        );
+    }
+    else{
+        console.log('No existe tag tbody...');
+    }
+}
 
+function retornarFilaHTML(producto){
+    return `    
+        <td>${producto[0]}</td>
+        <td>${producto[1]}</td>
+        <td>${producto[2]}</td>        
+        <td>${producto[3]}</td>
+        <td>${producto[4]}</td>
+        `;
+}
+
+function retornarFila(fila) {
+    let filaHtml = `    
+    <td>
+    <input type="number" value="0" min="0" pattern="\\d+" class="inputEntero">
+    </td>
+    <td class="codigo">
+     ${fila[0]}
+    </td>
+    <td class="producto">
+     ${fila[1]}
+    </td>
+    <td class="precio-unitario">
+    ${fila[2]}
+    </td>
+    <td class="subtotal">
+    0
+    </td>    
+    `
+    return filaHtml;
+}
+
+cargarNotaDePedido(notaDePedido);
 
 
 
