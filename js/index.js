@@ -53,22 +53,26 @@ function crearTabla(datos) {
 function crearEncabezados(filaEncabezados, tabla) {
     // Crear una fila en la tabla
     const filaElemento = document.createElement("tr");
+    filaElemento.setAttribute("class", "row-header");
 
     // Agrega encabezado Cantidad
     const columnCantidad = document.createElement("th");
     columnCantidad.textContent = "Cantidad";
+    columnCantidad.setAttribute("class", "row-header-cantidad");
     filaElemento.appendChild(columnCantidad);
 
     // Agregar las columnas que trae el archivo CSV a la fila
     for (let j = 0; j < filaEncabezados.length; j++) {
         const columna = document.createElement("th");
         columna.textContent = filaEncabezados[j];
+        columna.setAttribute("class", "row-header-"+filaEncabezados[j].toLowerCase());
         filaElemento.appendChild(columna);
     }
 
     // Agrega encabezado Subtotal
     const columnSubtotal = document.createElement("th");
     columnSubtotal.textContent = "Subtotal";
+    columnSubtotal.setAttribute("class", "row-header-subtotal");
     filaElemento.appendChild(columnSubtotal);
 
     // Agregar la fila a la tabla
@@ -84,7 +88,7 @@ function crearFilasConDatos(filaDatos, tabla) {
 
         const filaElemento = document.createElement("tr");
         filaElemento.setAttribute("id", fila[0]);
-        filaElemento.setAttribute("class", "fila-dato");
+        filaElemento.setAttribute("class", "row-data");
 
         filaElemento.innerHTML = (`
                 ${retornarFila(fila)}
@@ -134,24 +138,37 @@ function activarSubtotal(filaElemento) {
         const valor = event.target.value;
         const resultado = valor * precioUnitario.textContent;
         subtotal.textContent = resultado;
-        //obtenerTablaNotaPedido();
+        obtenerTablaNotaPedido();
     });
 }
 
 function obtenerTablaNotaPedido() {
-    const filas = tabla.querySelectorAll(".fila-dato");
+    const rowData = tabla.querySelectorAll(".row-data");
+    const rowHeader = tabla.querySelector(".row-header");
     const array = [];
 
-    for (const fila of filas) {
-        const cantidad = parseInt(fila.querySelector(".inputEntero").value);
+    const cantidadHeader = rowHeader.querySelector(".row-header-cantidad").innerHTML;
+    const codigoHeader = rowHeader.querySelector(".row-header-cod").innerHTML;
+    const descripcionHeader = rowHeader.querySelector(".row-header-descripcion").innerHTML;
+    const precioUnitarioHeader = rowHeader.querySelector(".row-header-precios").innerHTML;
+    const subtotalHeader = rowHeader.querySelector(".row-header-subtotal").innerHTML;            
+    const header = cantidadHeader + ',' + 
+                   codigoHeader + ',' + 
+                   descripcionHeader+ ',' + 
+                   precioUnitarioHeader + ',' + 
+                   subtotalHeader;
+    array.push(header);
+
+    for (const row of rowData) {
+        const cantidad = parseInt(row.querySelector(".inputEntero").value);
 
         if (cantidad > 0) {
-            const codigo = parseInt(fila.querySelector(".codigo").textContent);            
-            const descripcion = fila.querySelector(".producto").innerHTML;
-            const precioUnitario = parseInt(fila.querySelector(".precio-unitario").textContent);            
-            const subtotal = parseInt(fila.querySelector(".subtotal").textContent);            
+            const codigo = parseInt(row.querySelector(".codigo").textContent);            
+            const descripcion = row.querySelector(".producto").innerHTML;
+            const precioUnitario = parseInt(row.querySelector(".precio-unitario").textContent);            
+            const subtotal = parseInt(row.querySelector(".subtotal").textContent);            
             
-            const producto = cantidad + ',' + codigo + ',' + descripcion + ',' + precioUnitario + ',' + subtotal;            
+            const producto = cantidad + ',' + codigo + ',' + descripcion + ',' + precioUnitario + ',' + subtotal;
             array.push(producto);
         }
     }    
@@ -159,15 +176,13 @@ function obtenerTablaNotaPedido() {
     if(array.length > 0){
         localStorage.setItem('NotaPedido', JSON.stringify(array));
     }
-    else{        
+    else{
         console.warn("La lista esta vacia...");
     }
 }
 
 function activarBotonNotaPedido() {
-    const botonNotaPedido = document.querySelector(".button-NotaPedido");
-    console.log("activarBotonNotaPedido");
-
+    const botonNotaPedido = document.querySelector(".button-NotaPedido");    
     botonNotaPedido.addEventListener("click", (event) => {
         obtenerTablaNotaPedido();
     });
