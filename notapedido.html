@@ -10,20 +10,24 @@
 </head>
 
 <body>
-    <table class="tabla-pedido">
+    <table class="tabla-pedido" id="tabla-pedido">
       <tr class="row-header">
         <th class="row-header-cantidad">Cantidad</th>
         <th class="row-header-cod">Cod</th>
         <th class="row-header-descripcion">Descripcion</th>
         <th class="row-header-precios">Precios</th>
         <th class="row-header-subtotal">Subtotal</th>
-      </tr>
-     
+      </tr>         
     </table>
   
-  <div class="centrar-div">
-    <button class="button-pedido" id="button-pedido">Generar Nota</button>
-  </div>  
-  <script src="js/notapedido.js"></script>
+    <br>  
+  
+    <div class="centrar-div">    
+      <button class="button-generar-pedido" id="button-pedido">Generar Nota</button>  
+    </div>
+    <script src="js/notapedido.js"></script>
+    <script src="libs/jspdf.umd.js"></script>
+    <script src="libs/jspdf.plugin.autotable.js"></script>
 </body>
 </html>
+

@@ -1,6 +1,6 @@
-const notaDePedido = recuperarCarrito()
+const notaDePedido = recuperarNotaPedido()
 
-function recuperarCarrito()
+function recuperarNotaPedido()
 {
     //true retorna el carrito guardado - false retorna un array vacio
     return JSON.parse(localStorage.getItem('NotaPedido')) || [];
@@ -41,21 +41,8 @@ function retornarFilaHTML(producto){
 
 cargarNotaDePedido(notaDePedido);
 
-
-
-
-
-
-
-
-
-
-
-
-/*
-
 function activarBotonNotaPedido() {
-    const botonNotaPedido = document.getElementById("btnNotaPedido");
+    const botonNotaPedido = document.querySelector(".button-generar-pedido");
 
     if (botonNotaPedido !== null) {
         botonNotaPedido.addEventListener("click", () => {
@@ -63,17 +50,13 @@ function activarBotonNotaPedido() {
         });
     }
 }
-
-function generarNotaDePedido(){
-    console.log("Nota de pedido generada...");
-}
-
 activarBotonNotaPedido();
 
-function mostrarTablaDePedido(){
-    const divTablaDePedido = document.querySelector(".tabla-pedido");
-    divTablaDePedido.innerHTML = tablaDePedido;    
+function generarNotaDePedido(){  
+    console.log("Nota de pedido generada: "); 
+    var doc = new jspdf.jsPDF();
+    doc.text("Le Parc", 10, 10);
+    doc.line(10,10,180,10);
+    doc.autoTable({ html: '.tabla-pedido' })
+    doc.save('table.pdf')
 }
-
-mostrarTablaDePedido();
-*/
