@@ -55,7 +55,11 @@ activarBotonNotaPedido();
 function generarNotaDePedido(){  
     console.log("Nota de pedido generada: "); 
     var doc = new jspdf.jsPDF();
-    doc.text("Le Parc", 10, 10);
+    
+    doc.setFontSize(18)
+    doc.text('Le Parc', 14, 22)
+    doc.setFontSize(11)
+    doc.setTextColor(100)
     doc.line(10,10,180,10);
     doc.autoTable({ html: '.tabla-pedido' })
     doc.save('table.pdf')

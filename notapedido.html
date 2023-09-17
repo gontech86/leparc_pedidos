@@ -7,27 +7,69 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      // https://dashboard.emailjs.com/admin/account
+      emailjs.init('MldhQyYtPXIoHtZqy');
+    })();
+  </script>
+  <script type="text/javascript">
+    window.onload = function () {
+      document.getElementById('contact-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        // generate a five digit number for the contact_number variable
+        this.contact_number.value = Math.random() * 100000 | 0;
+        // these IDs from the previous steps
+        /*emailjs.sendForm('service_5y5fwyh', 'contact_form', this)
+            .then(function() {
+                console.log('SUCCESS!');
+            }, function(error) {
+                console.log('FAILED...', error);
+            });*/
+        emailjs.send('service_5y5fwyh', 'contact_form', templateParams)
+          .then(function (response) {
+            console.log('SUCCESS!', response.status, response.text);
+          }, function (error) {
+            console.log('FAILED...', error);
+          });
+
+      });
+    }
+  </script>
 </head>
 
 <body>
-    <table class="tabla-pedido" id="tabla-pedido">
-      <tr class="row-header">
-        <th class="row-header-cantidad">Cantidad</th>
-        <th class="row-header-cod">Cod</th>
-        <th class="row-header-descripcion">Descripcion</th>
-        <th class="row-header-precios">Precios</th>
-        <th class="row-header-subtotal">Subtotal</th>
-      </tr>         
-    </table>
-  
-    <br>  
-  
-    <div class="centrar-div">    
-      <button class="button-generar-pedido" id="button-pedido">Generar Nota</button>  
-    </div>
-    <script src="js/notapedido.js"></script>
-    <script src="libs/jspdf.umd.js"></script>
-    <script src="libs/jspdf.plugin.autotable.js"></script>
-</body>
-</html>
+  <form id="contact-form">
+    <input type="hidden" name="contact_number">
+    <label>Name</label>
+    <input type="text" name="user_name">
+    <label>Email</label>
+    <input type="email" name="user_email">
+    <label>Message</label>
+    <textarea name="message"></textarea>
+    <input type="submit" value="Send">
+  </form>
 
+  <table class="tabla-pedido" id="tabla-pedido">
+    <tr class="row-header">
+      <th class="row-header-cantidad">Cantidad</th>
+      <th class="row-header-cod">Cod</th>
+      <th class="row-header-descripcion">Descripcion</th>
+      <th class="row-header-precios">Precios</th>
+      <th class="row-header-subtotal">Subtotal</th>
+    </tr>
+  </table>
+
+  <br>
+
+  <div class="centrar-div">
+    <button class="button-generar-pedido" id="button-pedido">Generar Nota</button>
+  </div>
+  <script src="js/notapedido.js"></script>
+  <script src="libs/jspdf.umd.js"></script>
+  <script src="libs/jspdf.plugin.autotable.js"></script>
+</body>
+
+</html>
