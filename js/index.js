@@ -1,4 +1,4 @@
-const rutaListaLocal = "./data/lista.csv";
+const rutaListaLocal = "./data/listaPrecios.csv";
 let tabla;
 let productos;
 
@@ -22,6 +22,9 @@ function loadCSVFromFile() {
 
 //Carga automaticamente si detecta la tabla de referencia
 loadCSVFromFile();
+
+// Agrega el evento change al elemento input
+document.querySelector("input[name='archivo']").addEventListener("change", loadCSVFromInput);
 
 function loadCSVFromInput() {
     // Obtener el archivo CSV seleccionado
@@ -147,6 +150,8 @@ function obtenerTablaNotaPedido() {
     const rowHeader = tabla.querySelector(".row-header");
     const array = [];
 
+    const nombreVivero = document.querySelector(".vivero").value;
+    
     const cantidadHeader = rowHeader.querySelector(".row-header-cantidad").innerHTML;
     const codigoHeader = rowHeader.querySelector(".row-header-cod").innerHTML;
     const descripcionHeader = rowHeader.querySelector(".row-header-descripcion").innerHTML;
@@ -175,6 +180,7 @@ function obtenerTablaNotaPedido() {
 
     if(array.length > 0){
         localStorage.setItem('NotaPedido', JSON.stringify(array));
+        localStorage.setItem('NombreVivero', nombreVivero);
     }
     else{
         console.warn("La lista esta vacia...");
@@ -187,8 +193,5 @@ function activarBotonNotaPedido() {
         obtenerTablaNotaPedido();
     });
 }
-
-// Agrega el evento change al elemento input
-document.querySelector("input[name='archivo']").addEventListener("change", loadCSVFromInput);
 
 activarBotonNotaPedido();

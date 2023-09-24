@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: beige;
+    font-size: 1.25rem;
+}
+
+
+
+
+/*
+.container{
+    border: 1px solid black;
+    background: #ccc;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.caja{
+    border: 1px solid rgb(70,69,69);
+    background-color: white;
+    color: black;
+    width: max-content;
+    height: fit-content;
+}
+
+table {
+    border-collapse: collapse;
+  }
+table,
+th,
+td {
+  border: 1px solid black;
+}*/
