@@ -12,118 +12,78 @@
 </head>
 
 <body>
-    <h1>Le Parc</h1>
-    <section class="container">
-        <div class="caja nombre-vivero" >Vivero Japones</div>
-        <div class="caja">
-            <table class="tabla-pedido" id="tabla-pedido" name="message">
-                <tr>
-                    <td>Cantidad</td>
-                    <td>Cod</td>
-                    <td>Descripcion</td>
-                    <td>Precios</td>
-                    <td>Subtotal</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>74</td>
-                    <td>Soporte colgante redondo con macetero colonial N°1</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>106</td>
-                    <td>Macetero mini cuadrado deco</td>
-                    <td>890</td>
-                    <td>1781</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>76</td>
-                    <td>Macetero hexagonal Nº 2 decorado con plato doble</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>76</td>
-                    <td>Macetero mini piramidal</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>76</td>
-                    <td>Macetero mini piramidal</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>76</td>
-                    <td>Macetero mini piramidal</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>76</td>
-                    <td>Macetero mini piramidal</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>76</td>
-                    <td>Macetero mini piramidal</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>76</td>
-                    <td>Macetero mini piramidal</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>76</td>
-                    <td>Macetero mini piramidal</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>76</td>
-                    <td>Macetero mini piramidal</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>76</td>
-                    <td>Macetero mini piramidal</td>
-                    <td>846</td>
-                    <td>1692</td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td>TOTAL</td>
-                    <td>16926</td>
-                </tr>
-            </table>
-        </div>
-        <div class="caja">
-            <label>Email</label>
-            <input type="email" name="user_email" id="user_email">
-            <button class="button-enviar-pedido" id="button-enviar-pedido">Enviar pedido al email</button>
-        </div>
-        <div class="caja">            
+    <div class="wrapper">
+        <h1>Le Parc</h1>
+        <table class="tabla-pedido" id="tabla-pedido" name="message">
+            <caption>Nota de Pedido de <span class="nombre-vivero">Vivero Japones</span> </caption>
+            <tr>
+                <th>Cantidad</th>
+                <th>Cod</th>
+                <th>Descripcion</th>
+                <th>Precios</th>
+                <th>Subtotal</th>
+            </tr>
+            <tr>
+                <td data-cell="cantidad">2</td>
+                <td data-cell="cod">74</td>
+                <td data-cell="descripcion">Soporte colgante redondo con macetero colonial N°1</td>
+                <td data-cell="precios">846</td>
+                <td data-cell="subtotal">1692</td>
+            </tr>
+            <tr>
+                <td data-cell="cantidad">2</td>
+                <td data-cell="cod">74</td>
+                <td data-cell="descripcion">Soporte colgante redondo con macetero colonial N°1</td>
+                <td data-cell="precios">846</td>
+                <td data-cell="subtotal">1692</td>
+            </tr>
+            <tr>
+                <td data-cell="cantidad">2</td>
+                <td data-cell="cod">74</td>
+                <td data-cell="descripcion">Soporte colgante redondo con macetero colonial N°1</td>
+                <td data-cell="precios">846</td>
+                <td data-cell="subtotal">1692</td>
+            </tr>
+            <tr>
+                <td data-cell="cantidad">2</td>
+                <td data-cell="cod">74</td>
+                <td data-cell="descripcion">Macetero mini cuadrado deco</td>
+                <td data-cell="precios">846</td>
+                <td data-cell="subtotal">1692</td>
+            </tr>
+            <tr>
+                <td data-cell="cantidad">2</td>
+                <td data-cell="cod">74</td>
+                <td data-cell="descripcion">Macetero mini cuadrado deco</td>
+                <td data-cell="precios">846</td>
+                <td data-cell="subtotal">1692</td>
+            </tr>
+            <tr>
+                <td data-cell="cantidad">2</td>
+                <td data-cell="cod">74</td>
+                <td data-cell="descripcion">Macetero mini cuadrado deco</td>
+                <td data-cell="precios">846</td>
+                <td data-cell="subtotal">1692</td>
+            </tr>
+            <tr class="total">
+                <td colspan="3" class="hide-cells"></td>
+                <td>TOTAL</td>
+                <td>16926</td>
+            </tr>
+        </table>
+        <div class="button-nota-container">
             <button class="button-generar-pedido" id="button-pedido">Generar Nota</button>
         </div>
-    </section>
+
+        <hr style="border-style: dotted;">
+        <div class="button-email-container">
+            <label>Email</label>
+            <input type="email" name="user_email" id="user_email">
+            <div class="button-email-container">
+                <button class="button-enviar-pedido" id="button-enviar-pedido">Enviar pedido al email</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/notapedido.js"></script>
     <script src="js/email.js"></script>

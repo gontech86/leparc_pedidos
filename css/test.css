@@ -5,36 +5,108 @@
 }
 
 body{
-    background-color: beige;
-    font-size: 1.25rem;
+    color: #eaece5;
+    background-color: #3b3a30;
+    font-size: 1.125rem;
+    font-family: system-ui;
+    line-height: 1.5;
 }
 
-
-
-
-/*
-.container{
-    border: 1px solid black;
-    background: #ccc;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.wrapper{
+    width: min(900px, 100% - 3rem);
+    margin-inline: auto;
 }
 
-.caja{
-    border: 1px solid rgb(70,69,69);
-    background-color: white;
-    color: black;
-    width: max-content;
-    height: fit-content;
-}
-
-table {
+table{
+    width: 100%;
     border-collapse: collapse;
-  }
+    background-color: #622569;
+    text-align: center;
+}
+
+caption,th,td{
+padding: 1rem;
+}
+
+caption{
+    background: hsl(0, 0%, 0%);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+th{
+    background: hsl(0 0% 0% / 0.5);
+}
+
+tr:nth-of-type(2n){
+    background: hsl(0 0% 0% / 0.2);
+}
+
+@media (max-width: 650px){
+    th{
+        display: none;
+    }
+    td{
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: 15ch auto;
+        padding: 0.3rem 1rem;
+    }
+
+    td:first-child{
+        padding-top: 1.5rem;
+    }
+    
+    td:last-child {
+        padding-bottom: 2rem;
+    }
+
+    td::before{
+        content: attr(data-cell) ": ";
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+}
+
 table,
 th,
 td {
-  border: 1px solid black;
+  border: 1px solid white;
+}
+
+
+.total{
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/*.hide-cells{
+    background-color: #3b3a30;
+    border: 0.1px  dotte  #3b3a30;
 }*/
+
+.button-generar-pedido{
+    width: 30%;
+    height: 3rem;
+    font-size: 1.5rem;
+}
+
+.button-nota-container
+{
+    text-align: center;
+    padding: 1rem;
+}
+
+.button-email-container{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.button-enviar-pedido{
+    width: 50%;
+    height: 10%;
+    font-size: 1.5rem;
+}
