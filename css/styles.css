@@ -1,12 +1,92 @@
-table {
-  border-collapse: collapse;
-  border: 1px solid black;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-table,
+body {
+  color: #eaece5;
+  background-color: #3b3a30;
+  font-size: 1.125rem;
+  font-family: system-ui;
+  line-height: 1.5;
+}
+
+.wrapper {
+  width: min(900px, 100% - 3rem);
+  /*margin-inline: auto;*/
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #622569;
+  text-align: center;
+}
+
+caption,
 th,
 td {
-  border: 1px solid black;
+  padding: 1rem;
+}
+
+caption {
+  background: hsl(0, 0%, 0%);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+th{
+  background: hsl(0 0% 0% / 0.5);
+}
+
+tr:nth-of-type(2n){
+  background: hsl(0 0% 0% / 0.2);
+}
+
+@media (max-width: 400px){
+  th{
+      display: none;
+  }
+  td{
+      display: grid;
+      gap: 0.5rem;
+      grid-template-columns: 15ch auto;
+      padding: 0.3rem 1rem;
+  }
+
+  td:first-child{
+      padding-top: 1.5rem;
+  }
+  
+  td:last-child {
+      padding-bottom: 2rem;
+  }
+
+  td::before{
+      content: attr(data-cell) " ";
+      font-weight: 700;
+      text-transform: capitalize;
+  }
+}
+
+.total{
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.hide-cells{
+  background-color: #3b3a30;
+  border: 0.1px  dotte  #3b3a30;
+}
+
+.button-generar-pedido{
+  width: 30%;
+  height: 2rem;
+  font-size: 1rem;
 }
 
 .ocultar {
@@ -19,8 +99,16 @@ td {
   border-radius: 6px;
   padding: 3px;
   color: red;
-  font-size: 20px;  
+  background-color: beige;
+  font-size: 20px;
+  font-weight: 700;
   text-align: center;
+}
+/*
+table,
+th,
+td {
+  border: 1px solid black;
 }
 
 @media (max-width: 768px) {
@@ -28,7 +116,8 @@ td {
     width: 100%;
   }
 
-  td, th {
+  td,
+  th {
     width: 50%;
   }
 
@@ -46,3 +135,4 @@ td {
     width: 50px;
   }
 }
+*/

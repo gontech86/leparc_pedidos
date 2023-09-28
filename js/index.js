@@ -49,6 +49,10 @@ function crearTabla(datos) {
     tabla = document.getElementById("tabla");
     tabla.innerHTML = "";
 
+    const tablaCaption = document.createElement("caption");
+    tablaCaption.textContent = "Nota de Pedido";
+    tabla.append(tablaCaption);
+
     crearEncabezados(datos[0].split(","), tabla);
     crearFilasConDatos(datos.slice(1), tabla);// comienza luego de los encabezados
 }
@@ -106,19 +110,19 @@ function crearFilasConDatos(filaDatos, tabla) {
 
 function retornarFila(fila) {
     let filaHtml = `    
-    <td>
+    <td data-cell="cantidad">
     <input type="number" value="0" min="0" pattern="\\d+" class="inputEntero">
     </td>
-    <td class="codigo">
+    <td class="codigo" data-cell="cod">
      ${fila[0]}
     </td>
-    <td class="producto">
+    <td class="producto" data-cell="producto">
      ${fila[1]}
     </td>
-    <td class="precio-unitario">
+    <td class="precio-unitario" data-cell="P. Unitario">
     ${fila[2]}
     </td>
-    <td class="subtotal">
+    <td class="subtotal" data-cell="subtotal">
     0
     </td>    
     `

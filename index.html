@@ -10,18 +10,22 @@
 </head>
 
 <body>
-  <h1>Le Parc</h1>
-  <p class="archivo-error ocultar"> Archivo no encontrado en el celuar, se debe cargar manualmente</p>
-  <input type="file" name="archivo" id="archivo"><br>
-  <br>
-  <label for="vivero">Vivero: </label>
-  <input type="text" id="vivero" name="vivero" class="vivero"><br>
-  <br>
-  <table id="tabla"></table>
-  <div class="centrar-div">
-    <a href="notapedido.html">
-      <img class="button-NotaPedido" src="images/notaPedido.png" type="button" title="Nota de Pedido" alt="Nota de Pedido">
-    </a>
+  <div class="wrapper">
+    <h1>Le Parc</h1>    
+    <input type="file" name="archivo" id="archivo">
+    <p class="archivo-error ocultar"> Archivo no encontrado en el celuar, se debe cargar manualmente</p>
+    <div>
+      <label for="vivero">Vivero: </label>
+      <input type="text" id="vivero" name="vivero" class="vivero"><br>
+    </div>
+    <table id="tabla">
+    </table>
+    <div class="centrar-div">
+      <a href="notapedido.html">
+        <img class="button-NotaPedido" src="images/notaPedido.png" type="button" title="Nota de Pedido"
+          alt="Nota de Pedido">
+      </a>
+    </div>
   </div>
   <script src="./js/index.js"></script>
 </body>

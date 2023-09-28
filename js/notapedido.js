@@ -15,8 +15,8 @@ function recuperarNombreVivero()
 
 function cargarNombreVivero(nombre){
     const nombreViveroHtml = document.querySelector(".nombre-vivero");
-    //nombreViveroHtml.innerHTML = "Vivero: "+ nombre;
-    nombreViveroHtml.innerHTML = "Vivero Japones";
+    nombreViveroHtml.innerHTML = "Vivero: "+ nombre;
+    //nombreViveroHtml.innerHTML = "Vivero Japones";
 }
 
 function cargarNotaDePedido(arrayProductos) {
