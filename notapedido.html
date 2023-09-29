@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -7,32 +7,38 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 
 <body>
-  <h1>Le Parc</h1>
-  <div class="centrar-div nombre-vivero">Vivero</div>
-  <div class="centrar-div">    
+  <div class="wrapper">
+    <h1>Le Parc</h1>
+    <a href="index.html">
+      <img class="" style="filter: invert(100%);"   src="images/home.png" type="button" title="Nota de Pedido" alt="Nota de Pedido">
+    </a>   
+
     <table class="tabla-pedido" id="tabla-pedido" name="message">
-      <tr class="row-header">
-        <th class="row-header-cantidad">Cantidad</th>
-        <th class="row-header-cod">Cod</th>
-        <th class="row-header-descripcion">Descripcion</th>
-        <th class="row-header-precios">Precios</th>
-        <th class="row-header-subtotal">Subtotal</th>
+      <caption>Nota de Pedido de <span class="nombre-vivero">Vivero Japones</span> </caption>
+      <tr>
+        <th>Cantidad</th>
+        <th>Cod</th>
+        <th>Descripcion</th>
+        <th>Precios</th>
+        <th>Subtotal</th>
+      </tr>
+      <tr>
+        <td colspan="5">Tabla Vacia</td>
       </tr>
     </table>
-
-    <br>
-    <label>Email</label>
-    <input type="email" name="user_email" id="user_email">
-    <button class="button-enviar-pedido" id="button-enviar-pedido">Enviar pedido al email</button>
-    <br>
-    <button class="button-generar-pedido" id="button-pedido">Generar Nota</button>
-
-  </div>
+    <div class="nota-container">
+      <button class="button-generar-pedido" id="button-pedido">Generar Nota</button>
+    </div>
+    <div class="email-container">
+      <label>Email</label>
+      <input type="email" name="user_email" id="user_email">
+      <button class="button-enviar-pedido" id="button-enviar-pedido">Enviar pedido al email</button>
+    </div>
+  </div><!--Wrapper-->
   <script src="js/notapedido.js"></script>
   <script src="js/email.js"></script>
   <script src="libs/jspdf.umd.js"></script>

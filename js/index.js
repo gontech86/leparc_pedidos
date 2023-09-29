@@ -64,7 +64,7 @@ function crearEncabezados(filaEncabezados, tabla) {
 
     // Agrega encabezado Cantidad
     const columnCantidad = document.createElement("th");
-    columnCantidad.textContent = "Cantidad";
+    columnCantidad.textContent = "Cant";
     columnCantidad.setAttribute("class", "row-header-cantidad");
     filaElemento.appendChild(columnCantidad);
 
@@ -110,8 +110,8 @@ function crearFilasConDatos(filaDatos, tabla) {
 
 function retornarFila(fila) {
     let filaHtml = `    
-    <td data-cell="cantidad">
-    <input type="number" value="0" min="0" pattern="\\d+" class="inputEntero">
+    <td class="cantidad" data-cell="cantidad" >
+    <input type="number" value="0" size="4" min="0" pattern="\\d+" class="inputEntero">
     </td>
     <td class="codigo" data-cell="cod">
      ${fila[0]}

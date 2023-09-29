@@ -7,7 +7,7 @@
 body {
   color: #eaece5;
   background-color: #3b3a30;
-  font-size: 1.125rem;
+  /*font-size: 1.125rem;*/
   font-family: system-ui;
   line-height: 1.5;
 }
@@ -27,7 +27,7 @@ table {
 caption,
 th,
 td {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 caption {
@@ -45,7 +45,7 @@ tr:nth-of-type(2n){
   background: hsl(0 0% 0% / 0.2);
 }
 
-@media (max-width: 400px){
+@media (max-width: 380px){
   th{
       display: none;
   }
@@ -69,6 +69,16 @@ tr:nth-of-type(2n){
       font-weight: 700;
       text-transform: capitalize;
   }
+
+  .button-generar-pedido{
+    width: 60%;
+    height: 10rem;
+    font-size: 1rem;
+  }
+
+  table{
+    text-align: left;
+  }
 }
 
 .total{
@@ -84,9 +94,24 @@ tr:nth-of-type(2n){
 }
 
 .button-generar-pedido{
-  width: 30%;
   height: 2rem;
   font-size: 1rem;
+}
+
+.nota-container
+{
+    text-align: center;
+    padding: 1rem;
+}
+
+.email-container
+{
+  text-align: center;
+}
+
+.button-enviar-pedido{
+  height: 2rem;
+  font-size: 1rem;  
 }
 
 .ocultar {
@@ -102,6 +127,14 @@ tr:nth-of-type(2n){
   background-color: beige;
   font-size: 20px;
   font-weight: 700;
+  text-align: center;
+}
+
+.inputEntero{
+  width: fit-content;
+}
+
+.centrar-div {
   text-align: center;
 }
 /*
@@ -125,11 +158,6 @@ td {
     width: 50%;
   }
 }
-
-.centrar-div {
-  text-align: center;
-}
-
 @media screen and (max-width: 768px) {
   .inputEntero {
     width: 50px;
